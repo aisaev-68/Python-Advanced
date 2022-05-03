@@ -32,7 +32,7 @@ def compare(number_1: float, number_2: float):
     return f"<h3>Compare</h3> {number_1} {result} {number_2}"
 
 
-@app.route("/check_exists/<path:file_path>")
+@app.route("/check_exists/<string:file_path>")
 def check_exists(file_path):
     """
     Check if file with relative path exists in file system

@@ -24,8 +24,18 @@ def _sizeof_fmt(num, suffix="B"):
 
 
 def get_summary_rss(ps_output_file_path: str) -> str:
-    """put your code here"""
+    file = os.path.basename(ps_output_file_path)
+    sum_size = 0
+    with open(file, 'r') as f:
+        for item in f:
+            if item.split()[5].isdigit():
+                sum_size += int(item.split()[5])
+    return _sizeof_fmt(sum_size)
 
 
 if __name__ == "__main__":
-    print(get_summary_rss("<place ps aux output file path here>"))
+    ls_cmd = 'ps aux > output_file.txt'
+    os.system(ls_cmd)
+    print('Суммарный объём потребляемой памяти составляет ',
+          get_summary_rss(os.path.join(os.getcwd(), "output_file.txt")))
+

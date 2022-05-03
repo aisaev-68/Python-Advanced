@@ -29,4 +29,19 @@
 
 
 def decrypt(s: str) -> str:
-    """Put your code here"""
+    new_str = ''
+    for symb in s:
+        new_str += symb
+        if len(new_str) > 2 and new_str[-2:] == '..':
+            new_str = new_str[0:-3]
+    line = new_str.replace('.', '')
+    return line
+
+
+if __name__ == "__main__":
+    lst = ['абра-кадабра.', 'абраа..-кадабра', 'абраа..-.кадабра', 'абра--..кадабра', 'абрау...-кадабра',
+           'абра........',
+           'абр......a.', '1..2.3', '.', '1.......................']
+
+    for item in lst:
+        print(f'{item} -> {decrypt(item)}')
