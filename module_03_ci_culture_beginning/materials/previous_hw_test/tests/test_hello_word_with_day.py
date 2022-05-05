@@ -1,6 +1,17 @@
 import unittest
+import datetime
 
 from module_03_ci_culture_beginning.materials.previous_hw_test.hello_word_with_day import app
+
+day_to_word = {
+    0: "Хорошего понедельника",
+    1: "Хорошего вторника",
+    2: "Хорошей среды",
+    3: "Хорошего четверга",
+    4: "Хорошей пятницы",
+    5: "Хорошей субботы",
+    6: "Хорошего воскресенья",
+}
 
 
 class TestMaxNumberApp(unittest.TestCase):
@@ -15,3 +26,14 @@ class TestMaxNumberApp(unittest.TestCase):
         response = self.app.get(self.base_url + username)
         response_text = response.data.decode()
         self.assertTrue(username in response_text)
+
+    def test_can_get_correct_username_with_weekdate(self):
+        username = 'username'
+        current_day = datetime.datetime.today().weekday()
+        response = self.app.get(self.base_url + username)
+        response_text = response.data.decode()
+        self.assertEqual(response_text.split('.')[1].strip(), f'{day_to_word[current_day]}!')
+
+
+if __name__ == '__main__':
+    unittest.main()

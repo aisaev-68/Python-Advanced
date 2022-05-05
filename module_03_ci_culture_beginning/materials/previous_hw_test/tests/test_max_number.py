@@ -12,7 +12,7 @@ class TestMaxNumberApp(unittest.TestCase):
 
     def test_can_get_correct_max_number_in_series_of_two(self):
         numbers = 1, 2
-        url = self.base_url + '|'.join(str(i) for i in numbers)
+        url = self.base_url + '/'.join(str(i) for i in numbers)
         response = self.app.get(url)
         response_text = response.data.decode()
         correct_answer_str = f'<i>{max(numbers)}</i>'

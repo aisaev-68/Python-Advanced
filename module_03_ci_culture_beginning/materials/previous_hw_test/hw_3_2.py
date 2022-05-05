@@ -21,7 +21,7 @@ storage = {}
 
 
 @app.route("/add/<date>/<int:number>")
-def add(date: str, number: int) -> str:
+def add(date: str, number: int):
     dt = datetime.datetime.strptime(date, '%Y%m%d').date()
     if not storage.get(str(date)):
         storage[str(date)] = number
@@ -31,15 +31,15 @@ def add(date: str, number: int) -> str:
 
 
 @app.route("/calculate/<int:year>")
-def calculate_year(year: int) -> str:
-    year_dict = {key: value for key, value in storage.items() if int(key[:4]) == year}
+def calculate_year(year: int):
+    year_dict = dict(filter(lambda val: int(val[0][:4]) == year, storage.items()))
     sum_money = sum(year_dict.values())
     return f'Суммарные траты за {str(year)} год: {str(sum_money)}'
 
 
 @app.route("/calculate/<int:year>/<int:month>")
-def calculate_month(year: int, month: int) -> str:
-    year_dict = {key: value for key, value in storage.items() if int(key[:4]) == year and int(key[4:6]) == month}
+def calculate_month(year: int, month: int):
+    year_dict = dict(filter(lambda val: int(val[0][:4]) == year and int(val[0][4:6]) == month, storage.items()))
     sum_money = sum(year_dict.values())
     return f'Суммарные траты за {str(month)}-й месяц {str(year)} года: {str(sum_money)}'
 
