@@ -5,9 +5,7 @@ from flask import Flask, request
 app = Flask(__name__)
 
 
-@app.route(
-    "/search/", methods=["GET"],
-)
+@app.route("/search/", methods=["GET"])
 def search():
     cell_tower_ids: List[int] = request.args.getlist("cell_tower_id", type=int)
 
