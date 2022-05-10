@@ -7,11 +7,12 @@
     4) address (обязательно для заполнения),
     5) index (только числа, обязательно для заполнения).
 """
-
-from flask import Flask
+import json
+from flask import Flask, request
 from flask_wtf import FlaskForm
 from wtforms import IntegerField, StringField
 from wtforms.validators import InputRequired, Email, NumberRange
+from typing import List, Optional
 
 app = Flask(__name__)
 
@@ -28,11 +29,10 @@ class RegistrationForm(FlaskForm):
 @app.route("/registration", methods=["POST"])
 def registration():
     form = RegistrationForm()
-    print(form.data)
     if form.validate_on_submit():
-        email, phone = form.email.data, form.phone.data
+        email, phone, index = form.email.data, form.phone.data, form.index.data
 
-        return f"Successfully registered user {email} with phone +7{phone}"
+        return f"Successfully registered user {email} with phone +7{phone}" and {index}
 
     return f"Invalid input, {form.errors}", 400
 
