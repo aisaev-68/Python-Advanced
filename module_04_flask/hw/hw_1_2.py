@@ -7,12 +7,10 @@
     4) address (обязательно для заполнения),
     5) index (только числа, обязательно для заполнения).
 """
-import json
-from flask import Flask, request
+from flask import Flask
 from flask_wtf import FlaskForm
 from wtforms import IntegerField, StringField
 from wtforms.validators import InputRequired, Email, NumberRange
-from typing import List, Optional
 
 app = Flask(__name__)
 
