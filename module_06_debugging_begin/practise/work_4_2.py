@@ -23,28 +23,32 @@ logger = logging.getLogger("sort")
 
 
 def bubble_sort(array: List[int]) -> List[int]:
+    logger.info("Started sort server")
     n = len(array)
 
     for i in range(n):
         for j in range(i + 1, n):
             if array[i] > array[j]:
                 array[i], array[j] = array[j], array[i]
-
+    logger.info("End sort server")
     return array
 
 
 def tim_sort(array: List[int]) -> List[int]:
+    logger.info("Started sort server")
     array.sort()
+    logger.info("End sort server")
 
     return array
 
 
 def heap_sort(array: List[int]) -> List[int]:
+    logger.info("Started sort server")
     data = []
 
     for val in array:
         heapq.heappush(data, val)
-
+    logger.info("End sort server")
     return [heapq.heappop(data) for _ in range(len(data))]
 
 
@@ -70,7 +74,9 @@ def sort_endpoint(algorithm_name: str):
 
 
 if __name__ == "__main__":
-    logging.basicConfig(level=logging.DEBUG)
+    logging.basicConfig(filename='sort.log', level=logging.DEBUG,
+                        format='%(asctime)s - %(levelname)s - %(name)s - %(message)s', datefmt='%I:%M:%S %p')
     logger.info("Started sort server")
     app.config["WTF_CSRF_ENABLED"] = False
     app.run(debug=True)
+

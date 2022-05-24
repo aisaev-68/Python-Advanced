@@ -17,12 +17,17 @@
 import getpass
 import hashlib
 import logging
+import re
 
 logger = logging.getLogger("password_checker")
 
 
 def check_if_password_is_weak(password_string: str) -> bool:
-    pass
+    for word in data:
+        if re.search(r'\b' + word + r'\b', password_string, re.IGNORECASE):
+            return True
+
+    return False
 
 
 def input_and_check_password():
@@ -40,8 +45,7 @@ def input_and_check_password():
         hasher = hashlib.md5()
 
         hasher.update(password.encode("latin-1"))
-
-        if hasher.hexdigest() == "098f6bcd4621d373cade4e832627b4f6":
+        if hasher.hexdigest() == "098f6bcd4621d373cade4e832627b4f6":  # password:test
             return True
     except ValueError as ex:
         logger.exception("Вы ввели некорректный символ ", exc_info=ex)
@@ -50,6 +54,9 @@ def input_and_check_password():
 
 
 if __name__ == "__main__":
+    with open('/usr/share/dict/words', 'r', encoding='utf-8') as file:
+        data = re.findall(r'(?<!\S)[a-zA-Z]{5,}(?!\S)', (' ').join(file.readlines()))
+
     logging.basicConfig(level=logging.DEBUG)
     logger.info("Вы пытаетесь аутентифицироваться в Skillbox")
     count_number: int = 3

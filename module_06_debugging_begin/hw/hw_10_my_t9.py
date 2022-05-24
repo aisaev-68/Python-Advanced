@@ -27,8 +27,18 @@
 Ваше решение должно работать с алгоритмической сложностью O(N),
 где N -- длина цифровой строки.
 """
+
 from typing import List
 
 
 def my_t9(input_numbers: str) -> List[str]:
-    pass
+    return [x for x in data.split() if x.lower().translate(t).startswith(input_numbers)]
+
+
+if __name__ == "__main__":
+    t = str.maketrans('abcdefghijklmnopqrstuvwxyz','22233344455566677778889999')
+    with open('/usr/share/dict/words', 'r', encoding='utf-8') as file:
+        data = file.read()
+    phone_input_numbers = input('Введите строку комбинации чисел: ')
+    print(my_t9('22736368'))
+    print('Результат:', my_t9(phone_input_numbers))

@@ -15,8 +15,23 @@
 
 Покройте функцию логгированием.
 """
+import logging
+import random
 from typing import List
+
+logger = logging.getLogger("password_checker")
+logging.basicConfig(filename='out.log', level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(name)s - %(message)s', datefmt='%I:%M:%S %p')
 
 
 def get_average_salary_corrected(salaries: List[int]) -> float:
-    pass
+    min_numb = min(salaries)
+    max_numb = max(salaries)
+    logger.info('Старт выполнения функции')
+    lst = [i for i in salaries if min_numb < i < max_numb]
+    logger.info('Завершение выполнения функции')
+    return sum(lst) / len(lst)
+
+
+if __name__ == "__main__":
+    list_salaries = random.choices([i for i in range(15000, 95000, 5000)], k=1000000)
+    print('Средняя заработная плата: ', get_average_salary_corrected(list_salaries))

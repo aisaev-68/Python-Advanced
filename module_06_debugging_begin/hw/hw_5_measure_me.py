@@ -13,11 +13,25 @@
 Запустите эту программу, соберите логи и посчитайте
 среднее время выполнения функции measure_me.
 """
+
+import sys
 import logging
 import random
+from datetime import datetime
 from typing import List
 
 logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+stream_handler = logging.StreamHandler(stream=sys.stdout)
+file_handler = logging.FileHandler(filename='measure_me.log', mode='w', encoding='utf-8')
+file_handler.setLevel(logging.INFO)
+handlers = [file_handler, stream_handler]
+
+logging.basicConfig(
+    format='%(asctime)s -- %(filename)s:%(lineno)d -- %(levelname)s -- %(message)s',
+    datefmt='%Y-%m-%d %H:%M:%S',
+    handlers=handlers
+)
 
 
 def get_data_line(sz: int) -> List[int]:
@@ -29,7 +43,7 @@ def get_data_line(sz: int) -> List[int]:
 
 
 def measure_me(nums: List[int]) -> List[List[int]]:
-    logger.debug("Enter measure_me")
+    logger.info("Enter measure_me")
     results = []
     nums.sort()
 
@@ -45,7 +59,7 @@ def measure_me(nums: List[int]) -> List[List[int]]:
                     logger.debug(f"Found {target}")
                     results.append([nums[i], nums[left], nums[right]])
                     logger.debug(
-                            f"Appended {[nums[i], nums[left], nums[right]]} to result"
+                        f"Appended {[nums[i], nums[left], nums[right]]} to result"
                     )
                     while left < right and nums[left] == nums[left + 1]:
                         left += 1
@@ -61,13 +75,28 @@ def measure_me(nums: List[int]) -> List[List[int]]:
 
                     right -= 1
 
-    logger.debug("Leave measure_me")
+    logger.info("Leave measure_me")
 
     return results
 
 
+def get_lead_time(data_lst: list) -> str:
+    """Функция возвращает время затраченное
+    на выполнение функции measure_me
+    """
+    start_date_time = data_lst[0].split('--')[0].strip()
+    end_date_time = data_lst[len(data_lst) - 1].split('--')[0].strip()
+    time_differ = str(
+        datetime.strptime(end_date_time, "%Y-%m-%d %H:%M:%S") - datetime.strptime(start_date_time, "%Y-%m-%d %H:%M:%S"))
+
+    return time_differ
+
+
 if __name__ == "__main__":
-    logging.basicConfig(level="DEBUG")
     for it in range(15):
         data_line = get_data_line(10 ** 3)
         measure_me(data_line)
+
+    with open('measure_me.log', 'r', encoding='utf-8') as file:
+        data = file.readlines()
+        print('Время затраченное на выполнение функции measure_me:', get_lead_time(data))

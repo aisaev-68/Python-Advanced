@@ -18,6 +18,7 @@ def restore_tree(path_to_log_file: str) -> BinaryTreeNode:
 import itertools
 import logging
 import random
+import re
 from collections import deque
 from dataclasses import dataclass
 from typing import Optional
@@ -45,13 +46,13 @@ def walk(root: BinaryTreeNode):
 
         if node.left:
             logger.debug(
-                    f"{node!r} left is not empty. Adding {node.left!r} to the queue"
+                f"{node!r} left is not empty. Adding {node.left!r} to the queue"
             )
             queue.append(node.left)
 
         if node.right:
             logger.debug(
-                    f"{node!r} right is not empty. Adding {node.right!r} to the queue"
+                f"{node!r} right is not empty. Adding {node.right!r} to the queue"
             )
             queue.append(node.right)
 
@@ -72,13 +73,31 @@ def get_tree(max_depth: int, level: int = 1) -> Optional[BinaryTreeNode]:
     return node
 
 
+def restore_tree(path_to_log_file: str) -> BinaryTreeNode:
+    with open(path_to_log_file, 'r', encoding='utf-8') as file:
+        data = file.readlines()
+    for line in data:
+        if line.split()[0] == 'INFO:Visiting':
+            node = line.split()[1]
+        if line.split()[1] == 'left':
+            left = line.split()[6]
+        if line.split()[1] == 'right':
+            right = line.split()[6]
+            break
+    return node
+
+
 if __name__ == "__main__":
     logging.basicConfig(
-            level=logging.DEBUG,
-            format="%(levelname)s:%(message)s",
-            filename="hw_8_walk_log_4.txt",
+        level=logging.DEBUG,
+        format="%(levelname)s:%(message)s",
+        filename="hw_8_walk_log_4.txt",
     )
 
-    root = get_tree(7)
-
-    walk(root)
+    # root = get_tree(7)
+    #
+    # walk(root)
+    print(restore_tree('hw_8_walk_log_1.txt'))
+    print(restore_tree('hw_8_walk_log_2.txt'))
+    print(restore_tree('hw_8_walk_log_3.txt'))
+    print(restore_tree('hw_8_walk_log_4.txt'))

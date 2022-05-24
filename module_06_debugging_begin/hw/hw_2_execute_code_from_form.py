@@ -17,8 +17,14 @@ from flask import Flask
 from flask_wtf import FlaskForm
 from wtforms import IntegerField, StringField
 from wtforms.validators import InputRequired
+from werkzeug.exceptions import InternalServerError
+from typing import Optional
+import logging
 
 app = Flask(__name__)
+
+logger = logging.getLogger("password_checker")
+logging.basicConfig(filename='exec.log', level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(name)s - %(message)s', datefmt='%I:%M:%S %p')
 
 
 class CodeForm(FlaskForm):
@@ -51,6 +57,14 @@ def run_code():
 
     return f"Bad request. Error = {form.errors}", 400
 
+
+@app.errorhandler(OSError)
+def flask_error(e: OSError):
+
+    if isinstance(e, OSError):
+        logger.exception("Вы ввели некорректный символ ", exc_info=e)
+
+    return "Internal server error", 500
 
 if __name__ == "__main__":
     app.config["WTF_CSRF_ENABLED"] = False
