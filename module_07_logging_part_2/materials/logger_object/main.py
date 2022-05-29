@@ -1,11 +1,13 @@
 import logging
+import sys
+
 import flask
 
 from http_utils import get_ip_address
 from subprocess_utils import get_kernel_version
 
 
-logging.basicConfig(level='DEBUG')
+logging.basicConfig(level='DEBUG', handlers=[logging.StreamHandler(sys.stdout), logging.FileHandler(filename='1.log')])
 logger = logging.getLogger('main')
 
 app = flask.Flask(__name__)

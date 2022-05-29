@@ -1,31 +1,21 @@
 import logging
+from logging.config import dictConfig
 import sys
-
+from config import logging_config
 from utils import string_to_operator
 
-logger = logging.getLogger("app")
-console_handler = logging.StreamHandler(sys.stdout)
-logger.addHandler(console_handler)
-console_handler.setLevel(logging.DEBUG)
-file_handler1 = logging.FileHandler('app_debug.log', mode='w')
-file_handler1.setLevel(logging.DEBUG)
-logger.addHandler(file_handler1)
-file_handler2 = logging.FileHandler('app_info.log', mode='w')
-file_handler2.setLevel(logging.INFO)
-logger.addHandler(file_handler1)
-file_handler3 = logging.FileHandler('app_warning.log', mode='w')
-file_handler3.setLevel(logging.WARNING)
-logger.addHandler(file_handler3)
-file_handler4 = logging.FileHandler('app_critical.log', mode='w')
-file_handler4.setLevel(logging.CRITICAL)
-logger.addHandler(file_handler4)
-formatter = logging.Formatter(fmt="%(levelname)s | %(name)s | %(asctime)s | %(lineno)d | %(message)s")
-file_handler1.setFormatter(formatter)
-file_handler2.setFormatter(formatter)
-file_handler3.setFormatter(formatter)
-file_handler4.setFormatter(formatter)
-console_handler.setFormatter(formatter)
+# logging.basicConfig(level='DEBUG')
+# logger = logging.getLogger('app')
+# console_handler = logging.StreamHandler(sys.stdout)
+# file_handler = HandleToDifferentFiles('app.log', mode='a')
+# formatter = logging.Formatter(fmt="%(levelname)s | %(name)s | %(asctime)s | %(lineno)d | %(message)s")
+# file_handler.setFormatter(formatter)
+# console_handler.setFormatter(formatter)
+# logger.addHandler(console_handler)
+# logger.addHandler(file_handler)
 
+dictConfig(logging_config)
+logger = logging.getLogger('app')
 
 
 def calc(args):
@@ -37,21 +27,26 @@ def calc(args):
     try:
         num_1 = float(num_1)
     except ValueError as e:
-        logger.exception("Error while converting number 1")
-        logger.exception(e.args[0])
+        logger.error("Error while converting number 1", exc_info=True)
+        logger.debug(e.args[0])
 
     try:
         num_2 = float(num_2)
     except ValueError as e:
-        logger.exception("Error while converting number 2")
-        logger.exception(e.args[0])
+        logger.error("Error while converting number 2", exc_info=True)
+        logger.debug(e.args[0])
 
     operator_func = string_to_operator(operator)
-    result = operator_func(num_1, num_2)
-    logger.info(f"Result: {result}")
-    logger.info(f"{num_1} {operator} {num_2} = {result}")
+    try:
+        result = operator_func(num_1, num_2)
+        logger.info(f"Result: {result}")
+        logger.info(f"{num_1} {operator} {num_2} = {result}")
+    except Exception as err:
+        logger.exception(err)
+
 
 
 
 if __name__ == '__main__':
+    logger.info('Start programm')
     calc(sys.argv[1:])

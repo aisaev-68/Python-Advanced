@@ -10,7 +10,6 @@ submodule_logger.propagate = True
 
 def main():
 
-
     submodule_logger.debug("Hi there!")
 
 
