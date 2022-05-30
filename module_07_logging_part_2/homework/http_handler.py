@@ -32,7 +32,8 @@ logging_config = {
     },
     'formatters': {
         'formatter': {
-            'format': '%(levelname)s | %(name)s | %(asctime)s | %(lineno)d | %(message)s',
+            'format': {'levelname': '{%(levelname)s}', 'name': '%(name)s', 'date': '%(asctime)s',
+                       'lineno': '%(lineno)d', 'message': '%(message)s'},
             'datefmt': '%Y-%m-%d %H:%M:%S%Z'
         },
     },
