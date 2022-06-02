@@ -30,9 +30,22 @@ $ chmod 700 ~/.ssh
 Host <ip_address_of_your_machine>
   User <your_remote_system_user_name>
   IdentityFile ~/.ssh/timeweb
+  
+  Host 51.250.108.21
+  User aisaev_ramazan51.250.108.211
+  IdentityFile ~/.ssh/yandex
 ```
 
 6. попробуйте залогиниться
 ```shell script
     $ ssh <your_remote_system_user_name>@<ip_address_of_your_machine>
+    
+    $ ssh aisaev_ramazan@51.250.108.211
+    Welcome to Ubuntu 20.04.4 LTS (GNU/Linux 5.4.0-113-generic x86_64)
+
+     * Documentation:  https://help.ubuntu.com
+     * Management:     https://landscape.canonical.com
+     * Support:        https://ubuntu.com/advantage
+    Last login: Tue May 31 12:12:58 2022 from 81.163.44.142
+
 ```
