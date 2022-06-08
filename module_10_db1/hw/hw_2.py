@@ -34,7 +34,6 @@ if __name__ == "__main__":
         med_people = int(number_peoples) / 2
         sql_median_salary = f"SELECT AVG(salary) FROM (SELECT * FROM salaries " \
                             f"ORDER BY salary DESC LIMIT {med_people}, 2)"
-        print(sql_median_salary, med_people, number_peoples)
     else:
         med_people = int(number_peoples / 2) + 1
         sql_median_salary = f"SELECT AVG(salary) FROM (SELECT * FROM salaries " \
