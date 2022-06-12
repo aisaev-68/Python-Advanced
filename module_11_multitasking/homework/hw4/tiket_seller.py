@@ -20,7 +20,7 @@ class Director(threading.Thread):
         global TOTAL_TICKETS, AVIALABLE_TICKETS
         while TOTAL_TICKETS:  # 100
             if AVIALABLE_TICKETS < 4:
-                print('aaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+
                 with self.lock:
                     tickets_to_print = 10 - (AVIALABLE_TICKETS % 10)
                     if tickets_to_print > TOTAL_TICKETS:
