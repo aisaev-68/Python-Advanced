@@ -4,7 +4,7 @@ import threading
 import time
 
 TOTAL_TICKETS = 100
-AVIALABLE_TICKETS = 10
+AVIALABLE_TICKETS = 15
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -27,7 +27,7 @@ class Director(threading.Thread):
                         tickets_to_print = TOTAL_TICKETS
                     AVIALABLE_TICKETS += tickets_to_print
                     TOTAL_TICKETS -= tickets_to_print
-                    logger.info(f'Director put {tickets_to_print} new tckets')
+                    logger.info(f'Director put {tickets_to_print} new tikets')
         logger.info(f'Director stop work, not more tickets left')
 
 
@@ -51,6 +51,11 @@ class Seller(threading.Thread):
                 TOTAL_TICKETS -= 1
                 logger.info(f'{self.name} sold one;  {TOTAL_TICKETS} left')
         logger.info(f'Seller {self.name} sold {self.tickets_sold} tickets')
+
+
+
+    def get(self):
+        return self.tickets_sold
 
     def random_sleep(self):
         time.sleep(random.randint(0, 1))
