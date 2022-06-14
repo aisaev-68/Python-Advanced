@@ -10,6 +10,7 @@ def fun1(ev):
         print(1)
         sem.release()
         time.sleep(.25)
+    print('Exit from function fun1')
 
 
 def fun2(ev):
@@ -18,6 +19,7 @@ def fun2(ev):
         print(2)
         sem.release()
         time.sleep(.25)
+    print('Exit from function fun2')
 
 
 event = threading.Event()
