@@ -1,0 +1,1 @@
+Please run `generate_database.py` locally prior the materials check
