@@ -43,3 +43,55 @@ if __name__ == "__main__":
                   get_number_of_luckers(cursor, numb))
         except ValueError as er:
             print('Введите число.')
+
+#метод предложенный преподавателем
+# import datetime
+# import sqlite3
+#
+# get_auto_by_month_color_type_query = """
+# SELECT COUNT(*)
+#     FROM `table_occult_car_repair`
+#     WHERE timestamp LIKE ? AND
+#         car_colour = ? AND
+#         (car_type = ? OR car_type = ?)
+# """
+#
+#
+# def get_number_of_lucky(c: sqlite3.Cursor, month: int):
+#     #  Для добавления ведущих нулей к строке лучше использовать
+#     #  метод zfill строковых объектов.
+#     # month_str = f"0{month}" if month < 10 else f"{month}"
+#     timestamp = f"2020-{str(month).zfill(2)}-13"
+#
+#     if datetime.datetime.strptime(timestamp, "%Y-%m-%d").weekday() == 4:
+#         c.execute(
+#             get_auto_by_month_color_type_query,
+#             (timestamp + "%", "чёрный", "BMW", "Лада")
+#         )
+#         return cursor.fetchone()[0]
+#     return 0
+#
+#
+# MONTHS = (
+#     "January",
+#     "February",
+#     "March",
+#     "April",
+#     "May",
+#     "June",
+#     "July",
+#     "August",
+#     "September",
+#     "October",
+#     "November",
+#     "December"
+# )
+#
+#
+# if __name__ == "__main__":
+#     with sqlite3.connect("hw.db") as conn:
+#         cursor = conn.cursor()
+#
+#         for i in range(1, 13):
+#             autos_count = get_number_of_lucky(cursor, i)
+#             print(f"In {MONTHS[i - 1]} there {autos_count} cars.")
