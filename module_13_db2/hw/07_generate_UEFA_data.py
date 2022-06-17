@@ -21,6 +21,7 @@
 Таблица с данными называется `uefa_commands` и `uefa_draw`
 """
 
+
 from faker import Faker
 import sqlite3
 

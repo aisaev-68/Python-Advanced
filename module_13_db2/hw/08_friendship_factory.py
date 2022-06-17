@@ -36,7 +36,7 @@ def update_work_schedule(c: sqlite3.Cursor) -> None:
     for ind, week in enumerate(week_lst):
         sql_update = f"""
         UPDATE `table_friendship_employees`
-        SET preferable_sport = ?
+        SET preferable_sport = ? 
         WHERE name in (
         select b.name
         from `table_friendship_schedule` a,

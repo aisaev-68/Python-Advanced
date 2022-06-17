@@ -15,6 +15,7 @@
 
 Таблица с данными называется `table_effective_manager`
 """
+
 import sqlite3
 
 
