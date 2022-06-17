@@ -37,11 +37,10 @@ def update_work_schedule(c: sqlite3.Cursor) -> None:
         sql_update = f"""
         UPDATE `table_friendship_employees`
         SET preferable_sport = ? 
-        WHERE name in (
-        select b.name
-        from `table_friendship_schedule` a,
-        `table_friendship_employees` b
-        where a.employee_id = b.id and strftime('%w', a.date) =  ?)
+        WHERE id in (
+        select a.employee_id
+        from `table_friendship_schedule` a
+        where strftime('%w', a.date) =  ?)
         """
         c.execute(sql_update, (week, ind))
 
