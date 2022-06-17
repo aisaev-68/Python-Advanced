@@ -11,3 +11,36 @@
     и в ответ возвращает число клиентов, которые могли бы воспользоваться скидкой автосалона.
     Таблица с данными называется `table_occult_car_repair`
 """
+import sqlite3
+
+
+def get_number_of_luckers(c: sqlite3.Cursor, numb_month: str):
+    sql_select = """
+    SELECT *
+    FROM `table_occult_car_repair`
+    WHERE STRFTIME('%m',datetime(timestamp)) = ?
+    AND STRFTIME('%d',datetime(timestamp)) = '13'
+    AND datetime(timestamp) IN (
+    SELECT datetime(timestamp, 'weekday 5')
+    FROM `table_occult_car_repair`
+    WHERE car_colour = 'чёрный'
+    AND (car_type = 'BMW' or car_type = 'Лада'))
+    """
+    c.execute(sql_select, (numb_month,))
+    count = len(c.fetchall())
+    return count
+
+
+if __name__ == "__main__":
+    with sqlite3.connect("hw.db") as connection:
+        cursor = connection.cursor()
+        try:
+            numb = int(input('Введите номер месяца:\n>>'))
+            if numb < 10:
+                numb = '0' + str(numb)
+            else:
+                numb = str(numb)
+            print('Число клиентов, которые могли бы воспользоваться скидкой автосалона равна ',
+                  get_number_of_luckers(cursor, numb))
+        except ValueError as er:
+            print('Введите число.')
