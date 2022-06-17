@@ -50,14 +50,3 @@ if __name__ == "__main__":
     with sqlite3.connect("hw.db") as connection:
         cursor = connection.cursor()
         update_work_schedule(cursor)
-        sql_select_group = """
-        SELECT preferable_sport, COUNT(*) 
-        FROM `table_friendship_employees` 
-        GROUP BY preferable_sport
-        """
-        cursor.execute(sql_select_group)
-        data = cursor.fetchall()
-        if len(data) == 7:
-            print('Все данные обновлены')
-        else:
-            print('Данные обновлены только по значению Dota2, чего они хотят - не возможно')
