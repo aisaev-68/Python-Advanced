@@ -41,11 +41,9 @@ def update_work_schedule(c: sqlite3.Cursor) -> None:
         select b.name
         from `table_friendship_schedule` a,
         `table_friendship_employees` b
-        where a.employee_id = b.id and date in
-        (SELECT date(c.date, 'weekday {ind}')
-        FROM `table_friendship_schedule` c))
+        where a.employee_id = b.id and strftime('%w', a.date) =  ?)
         """
-        c.execute(sql_update, (week,))
+        c.execute(sql_update, (week, ind))
 
 
 if __name__ == "__main__":

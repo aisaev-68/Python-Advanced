@@ -20,12 +20,10 @@ def get_number_of_luckers(c: sqlite3.Cursor, numb_month: str):
     SELECT *
     FROM `table_occult_car_repair`
     WHERE STRFTIME('%m',datetime(timestamp)) = ?
-    AND STRFTIME('%d',datetime(timestamp)) = '13'
-    AND datetime(timestamp) IN (
-    SELECT datetime(timestamp, 'weekday 5')
-    FROM `table_occult_car_repair`
-    WHERE car_colour = 'чёрный'
-    AND (car_type = 'BMW' or car_type = 'Лада'))
+    AND STRFTIME('%d',datetime(timestamp)) = '13' 
+    AND strftime('%w', timestamp) =  '5'
+    AND car_colour = 'чёрный'
+    AND (car_type = 'BMW' or car_type = 'Лада')
     """
     c.execute(sql_select, (numb_month,))
     count = len(c.fetchall())
