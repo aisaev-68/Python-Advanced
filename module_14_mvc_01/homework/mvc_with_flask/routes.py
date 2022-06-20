@@ -1,12 +1,13 @@
-from typing import List, Dict
+from typing import List
 
-from flask import Flask, render_template, request, redirect, url_for
-
-from models import init_db, get_all_books, add_book, \
-    DATA, search_book, update_book_counter, select_book_counter, insert_book_counter
+from flask import Flask, redirect, render_template, request, url_for
 from flask_wtf import FlaskForm
 from wtforms import StringField
 from wtforms.validators import InputRequired
+
+from models import (DATA, add_book, get_all_books, init_db,
+                    insert_book_counter, search_book, select_book_counter,
+                    update_book_counter)
 
 app = Flask(__name__)
 
