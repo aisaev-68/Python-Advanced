@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="form-style-10">
+    <h1>FORM SEARCH</h1>
+    <form action="/books/results" method="post">
+
+        <div class="inner-wrap">
+            <label>Author full name
+                <input type="text" name="author_full_name" value="{{ request.form['author_full_name'] }}"/>
+            </label>
+
+        </div>
+
+        <div class="button-section">
+            <input type="submit" name="Search" />
+        </div>
+    </form>
+</div>
+{% endblock %}
