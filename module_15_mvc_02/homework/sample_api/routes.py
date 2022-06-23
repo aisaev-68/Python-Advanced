@@ -1,7 +1,4 @@
 from flask import Flask, request, jsonify
-from flask_wtf import FlaskForm
-from wtforms import IntegerField, FloatField
-from wtforms.validators import InputRequired
 from models import init_db, add_room_db, add_booking, \
     get_all_rooms, get_room_booking, get_room_id
 from schema import schema
@@ -19,6 +16,7 @@ def add_room():
     room_request = []
     if data:
         request_data = request.get_json()
+
         if 'floor' in request_data:
             floor = request_data['floor']
 
@@ -30,6 +28,7 @@ def add_room():
 
         if 'price' in request_data:
             price = request_data['price']
+
         add_room_db((floor, beds, guest_num, price))
     else:
         room_request = get_all_rooms()
@@ -43,6 +42,9 @@ def get_room():
     check_in = None
     check_out = None
     guests_num = 0
+    result_data = {
+        "rooms": []
+    }
 
     if request.args.get('checkIn') and request.args.get('checkIn') != '':
         check_in = request.args.get('checkIn', type=str)
@@ -50,14 +52,20 @@ def get_room():
     if request.args.get('checkOut') and request.args.get('checkOut') != '':
         check_out = request.args.get('checkOut', type=str)
 
-    if request.args.get('guestsNum') and request.args.get('guestsNum') != 0:
+    if request.args.get('checkOut') and request.args.get('checkOut') != '':
         guests_num = request.args.get('guestsNum', type=int)
 
-    val = (check_in, check_out, guests_num)
-    room_request = get_room_booking(val)
+    busy_rooms = get_room_booking((guests_num, check_in, check_out))
+    for item in get_all_rooms():
+        if item[0] not in busy_rooms:
+            room_request = {"roomId": item[0],
+                            "floor": item[1],
+                            "guestNum": item[2],
+                            "beds": item[3],
+                            "price": item[4]}
 
-    schema["rooms"] = room_request
-    return jsonify(schema)
+            result_data["rooms"].append(room_request)
+    return jsonify(result_data)
 
 
 @app.route('/booking', methods=['POST'])
@@ -67,10 +75,9 @@ def new_booking():
     check_out = None
     firstname = None
     lastname = None
-    room_request = []
-    request_booking = request.get_json()
-    if request_booking:
-
+    data = request.data
+    if data:
+        request_booking = request.get_json()
         if 'bookingDates' in request_booking:
             check_in = request_booking['bookingDates']['checkIn']
             check_out = request_booking['bookingDates']['checkOut']
@@ -83,13 +90,12 @@ def new_booking():
 
         if 'roomId' in request_booking:
             room_id = request_booking['roomId']
-        if get_room_id(room_id):
+        free_id_rooms = get_room_id()
+        if room_id in free_id_rooms:
             add_booking((room_id, firstname, lastname, check_in, check_out))
-    else:
-        room_request = get_all_rooms()
-
-    schema["rooms"] = room_request
-    return jsonify(schema)
+            return 'The room succsessfully booked', 200
+        else:
+            return "Can't book same room twice", 409
 
 
 if __name__ == '__main__':
