@@ -93,7 +93,7 @@ def new_booking():
         free_id_rooms = get_room_id()
         if room_id in free_id_rooms:
             add_booking((room_id, firstname, lastname, check_in, check_out))
-            return 'The room succsessfully booked', 200
+            return 'The room successfully booked', 200
         else:
             return "Can't book same room twice", 409
 
