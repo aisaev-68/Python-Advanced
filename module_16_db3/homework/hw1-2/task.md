@@ -12,6 +12,11 @@
 
 Ответ дайте, заполнив таблицу:
 
-| Relationship type | Table A       | Table B  |
-|:-----------------:|---------------|----------|
-|                   |               |          |
+| Relationship type | Table A         | Table B         |
+|:-----------------:|-----------------|-----------------|
+|  один ко многим   | director        | movie_direction |
+| многие ко многим  | movie_direction | movie           |
+|  один ко многим   | director        | movie           |
+|   один к одному   | movie           | oscar_award     |
+|  один ко многим   | movie           | movie_cast      |
+| многие ко многим  | actors          | movie_cast      |
