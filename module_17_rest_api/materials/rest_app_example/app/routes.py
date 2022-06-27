@@ -35,6 +35,12 @@ class BookList(Resource):
         book = add_book(book)
         return schema.dump(book), 201
 
+    def put(self):
+        pass
+
+    def delete(self):
+        pass
+
 
 api.add_resource(BookList, '/api/books')
 
