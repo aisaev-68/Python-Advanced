@@ -1,0 +1,5 @@
+Flask-RESTful==0.3.9
+marshmallow==3.12.1
+flasgger==0.9.5
+requests==2.25.1
+apispec==4.7.1
