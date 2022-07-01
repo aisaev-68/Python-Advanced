@@ -1,0 +1,141 @@
+{
+  "definitions": {
+    "Author": {
+      "properties": {
+        "author": {
+          "type": "string"
+        }, 
+        "id_author": {
+          "type": "integer"
+        }, 
+        "title": {
+          "type": "string"
+        }
+      }, 
+      "required": [
+        "author", 
+        "title"
+      ], 
+      "type": "object"
+    }, 
+    "AuthorBook": {
+      "properties": {
+        "author": {
+          "required": true, 
+          "type": "string"
+        }, 
+        "title": {
+          "required": true, 
+          "type": "string"
+        }
+      }, 
+      "type": "object"
+    }
+  }, 
+  "info": {
+    "title": "AuthorList", 
+    "version": "1.0.0"
+  }, 
+  "paths": {
+    "/api/authors": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Authors data", 
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/Author"
+              }, 
+              "type": "array"
+            }
+          }
+        }, 
+        "summary": "This is an endpoint for obtaining the books list.", 
+        "tags": [
+          "get_all_authors_and_book"
+        ]
+      }, 
+      "post": {
+        "parameters": [
+          {
+            "in": "body", 
+            "name": "new author", 
+            "schema": {
+              "$ref": "#/definitions/AuthorBook"
+            }
+          }
+        ], 
+        "responses": {
+          "201": {
+            "description": "The author and book has been created", 
+            "schema": {
+              "$ref": "#/definitions/Author"
+            }
+          }
+        }, 
+        "summary": "This is the endpoint for adding author and book", 
+        "tags": [
+          "add_authors_and_book"
+        ]
+      }
+    }, 
+    "/api/authors/{id_author}": {
+      "delete": {
+        "parameters": [
+          {
+            "format": "int64", 
+            "in": "path", 
+            "name": "id_author", 
+            "required": true, 
+            "type": "integer"
+          }
+        ], 
+        "responses": {
+          "200": {
+            "description": "The author with his books has been deleted"
+          }, 
+          "404": {
+            "description": "There is no record in the database"
+          }
+        }, 
+        "summary": "This is the endpoint for deleting an author with his books by author id", 
+        "tags": [
+          "delete_author_and_books_by_id"
+        ]
+      }, 
+      "get": {
+        "parameters": [
+          {
+            "format": "int64", 
+            "in": "path", 
+            "name": "id_author", 
+            "required": true, 
+            "type": "integer"
+          }
+        ], 
+        "produces": [
+          "application/json"
+        ], 
+        "responses": {
+          "200": {
+            "description": "Authors data", 
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/Author"
+              }, 
+              "type": "array"
+            }
+          }, 
+          "404": {
+            "description": "There is no record in the database"
+          }
+        }, 
+        "summary": "This is the endpoint for getting the author with his books by id", 
+        "tags": [
+          "get_authors_by_id"
+        ]
+      }
+    }
+  }, 
+  "swagger": "2.0"
+}

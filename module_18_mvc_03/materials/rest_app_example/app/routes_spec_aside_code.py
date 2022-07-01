@@ -1,5 +1,6 @@
 from typing import Tuple, List, Dict
 
+
 from apispec.ext.marshmallow import MarshmallowPlugin
 from apispec_webframeworks.flask import FlaskPlugin
 from flasgger import APISpec, Swagger

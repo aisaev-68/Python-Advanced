@@ -1,0 +1,102 @@
+{
+  "definitions": {
+    "Calc": {
+      "properties": {
+        "id": {
+          "example": "1",
+          "type": "string"
+        },
+        "jsonrpc": {
+          "example": "2.0"
+        },
+        "method": {
+          "example": "App.calculation"
+        },
+        "params": {
+          "properties": {
+            "action": {
+              "enum": [
+                "+",
+                "*",
+                "/",
+                "-"
+              ],
+              "type": "string"
+            },
+            "first_numb": {
+              "type": "number"
+            },
+            "sec_numb": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "first_numb",
+            "sec_numb",
+            "action"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "Res": {
+      "properties": {
+        "jsonrpc": {
+          "example": "2.0",
+          "type": "string"
+        },
+        "result": {
+          "id": {
+            "type": "string",
+            "example": "1"
+          },
+          "properties": {
+            "data": {
+              "type": "object"
+            },
+            "response_code": {
+              "type": "integer"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "info": {
+    "title": "App.calculation",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/api": {
+      "post": {
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Numbers and action for calculating",
+            "schema": {
+              "$ref": "#/definitions/Calc"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Calculating result",
+            "schema": {
+              "$ref": "#/definitions/Res"
+            }
+          },
+          "400": {
+            "description": "Error in data"
+          }
+        },
+        "summary": "This is an endpoint for calculating of two numbers.",
+        "tags": [
+          "calculating"
+        ]
+      }
+    }
+  },
+  "swagger": "2.0"
+}

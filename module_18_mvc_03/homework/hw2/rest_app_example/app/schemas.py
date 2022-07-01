@@ -22,4 +22,3 @@ class AuthorSchema(Schema):
     @post_load
     def create_book(self, data: Dict, **kwargs) -> Book:
         return Book(**data)
-
