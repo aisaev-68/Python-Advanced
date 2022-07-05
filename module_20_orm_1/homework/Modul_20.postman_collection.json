@@ -1,0 +1,148 @@
+{
+	"info": {
+		"_postman_id": "b1b5a0ba-2ead-4ad8-8f4b-548cc160546c",
+		"name": "Modul_20",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20849920"
+	},
+	"item": [
+		{
+			"name": "get_all_books",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/books",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"books"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_debtors",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/debtors",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"debtors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "issue_book",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/issue_books?id_book=1000&id_student=10",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"issue_books"
+					],
+					"query": [
+						{
+							"key": "id_book",
+							"value": "1000"
+						},
+						{
+							"key": "id_student",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "return_date_book",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/return_books?id_book=4&id_student=5",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"return_books"
+					],
+					"query": [
+						{
+							"key": "id_book",
+							"value": "4"
+						},
+						{
+							"key": "id_student",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "search_books",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/search_books?txt=дин",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"search_books"
+					],
+					"query": [
+						{
+							"key": "txt",
+							"value": "дин"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
