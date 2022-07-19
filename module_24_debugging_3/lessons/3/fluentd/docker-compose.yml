@@ -1,0 +1,28 @@
+version: '2'
+services:
+
+  app:
+    build:
+      context: app
+    stop_signal: SIGKILL
+    ports:
+      - 5000:5000
+    links:
+      - fluentd
+    volumes:
+      - ./app/flask_app.py:/var/server/app.py
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: localhost:24224
+        tag: docker.app
+
+
+  fluentd:
+    image: fluent/fluentd:v0.12-debian
+    volumes:
+      - ./fluentd_container/conf:/fluentd/etc
+
+    ports:
+      - "24224:24224"
+      - "24224:24224/udp"

@@ -1,0 +1,7 @@
+filter {
+ 	if ![exc_info] {
+		grok {
+				match => { "message" => "%{IPORHOST: remote_ip} (?:%{USER: ident}|-) (?:%{USER: auth}|-) \[%{HTTPDATE: timestamp}\] \"%{WORD:request_method} %{DATA:request_path} HTTP/%{NUMBER:http_version}\" %{NUMBER:response} (?:%{NUMBER:bytes}|-) \"(?:%{URI:referrer}|-)\" %{QS:agent}"}
+		}
+	}
+}
