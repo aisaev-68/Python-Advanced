@@ -7,7 +7,7 @@ RUN pip3 install -r requirements.txt
 
 ADD . /app
 EXPOSE 5000
-ENTRYPOINT ["gunicorn","--bind","0.0.0.0:5000","--log-config","log_2.conf","wsgi:app"]
+ENTRYPOINT ["gunicorn","--bind","0.0.0.0:5000", "wsgi:app"]
 
 
 

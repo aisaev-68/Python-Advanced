@@ -5,7 +5,7 @@ import logging
 
 
 sentry_sdk.init(
-    dsn="your-dsn-of-project",
+    dsn="http://f87f17e6397c44b98032c0c26932ae67@localhost:9000/4",
     integrations=[FlaskIntegration()],
 
     # Set traces_sample_rate to 1.0 to capture 100%

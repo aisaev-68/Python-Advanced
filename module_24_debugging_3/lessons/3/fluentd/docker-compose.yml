@@ -21,7 +21,7 @@ services:
   fluentd:
     image: fluent/fluentd:v0.12-debian
     volumes:
-      - ./fluentd_container/conf:/fluentd/etc
+      - ./fluentd/conf:/fluentd/etc
 
     ports:
       - "24224:24224"
