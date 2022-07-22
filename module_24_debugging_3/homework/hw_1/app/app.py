@@ -10,38 +10,41 @@ app = Flask(__name__)
 app.config['DEBUG'] = True
 
 
-@app.route('/one')
-def first_route():
-    time.sleep(random.random() * 0.2)
-    return 201
+@app.route("/")
+def home() -> str:
+    return "Hello, World!"
 
 
-@app.route('/two')
-def the_second():
-    time.sleep(random.random() * 0.4)
-    return 202
+@app.route("/one")
+def one() -> Tuple[str, int]:
+    return "Created", 201
 
 
-@app.route('/three')
-def test_3rd():
-    time.sleep(random.random() * 0.6)
-    return 203
+@app.route("/two")
+def two() -> Tuple[str, int]:
+    return "Accepted", 202
 
 
-@app.route('/four')
-def fourth_four():
-    time.sleep(random.random() * 0.8)
-    return 204
+@app.route("/three")
+def three() -> Tuple[str, int]:
+    return "Non-Authoritative Information", 203
 
-@app.route('/five')
-def fourth_five():
-    time.sleep(random.random() * 0.8)
-    return 205
+
+@app.route("/four")
+def four() -> Tuple[str, int]:
+    return "No Content", 204
+
+
+@app.route("/five")
+def five() -> Tuple[str, int]:
+    return "Reset Content", 205
+
 
 @app.route("/error")
 def error_handler() -> Tuple[str, int]:
     a = 1 / 0
     return "error", 500
+
 
 
 if __name__ == "__main__":
