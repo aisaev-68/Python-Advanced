@@ -1,12 +1,7 @@
-import random
-import time
-
 from flask import Flask
-
 from typing import Tuple
 
 app = Flask(__name__)
-
 app.config['DEBUG'] = True
 
 
@@ -48,4 +43,4 @@ def error_handler() -> Tuple[str, int]:
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0')
+    app.run(host="0.0.0.0")
