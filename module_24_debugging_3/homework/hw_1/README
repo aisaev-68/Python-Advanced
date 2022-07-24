@@ -1,0 +1,2 @@
+# curl -XPOST -D- 'http://localhost:5601/api/saved_objects/index-pattern'     -H 'Content-Type: application/json'     -H 'kbn-xsrf: true'     -d '{"attributes":{"title":"fluentd-*","timeFieldName":"@timestamp"}}'
+# это команда создает индекс

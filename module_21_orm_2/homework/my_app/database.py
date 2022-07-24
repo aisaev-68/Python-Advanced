@@ -101,4 +101,3 @@ def validate_phone(target, *args, **kwargs):
     phone = kwargs.get('phone')
     if phone and re.search(r'\+7\(9\d{2}\)\-\d{3}\-\d{2}\-\d{2}', phone):
         raise ValueError('Неправильный номер телефона')
-
