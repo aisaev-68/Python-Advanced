@@ -1,7 +1,7 @@
 import time
 import sys
 
-# def main():
+# def main.py():
 #     print('Start program and going to sleep')
 #     time.sleep(5)
 #     print('Done sleeping 5 seconds. Bye!')

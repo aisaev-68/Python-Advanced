@@ -12,7 +12,7 @@ logging_config = {
     'version': 1,
     'disable_existing_loggers': True,
     'loggers': {
-        'main': {
+        'main.py': {
             'level': 'DEBUG',
             'handlers': ['file_handler'],
             'propagate': False,
@@ -49,7 +49,7 @@ logging_config = {
 
 
 dictConfig(logging_config)
-logger = logging.getLogger('main')
+logger = logging.getLogger('main.py')
 
 app = flask.Flask(__name__)
 

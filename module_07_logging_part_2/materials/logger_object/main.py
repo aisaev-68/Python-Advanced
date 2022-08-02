@@ -8,7 +8,7 @@ from subprocess_utils import get_kernel_version
 
 
 logging.basicConfig(level='DEBUG', handlers=[logging.StreamHandler(sys.stdout), logging.FileHandler(filename='1.log')])
-logger = logging.getLogger('main')
+logger = logging.getLogger('main.py')
 
 app = flask.Flask(__name__)
 

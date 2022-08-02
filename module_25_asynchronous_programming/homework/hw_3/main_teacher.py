@@ -1,3 +1,5 @@
+from time import time
+
 import aiohttp
 import aiofiles
 import asyncio
@@ -8,8 +10,9 @@ import logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger()
 
-URL = "https://stackoverflow.com"
-DEPTH = 3
+# URL = "https://stackoverflow.com"
+URL = 'http://www.aclweb.org/anthology/'
+DEPTH = 1
 
 
 async def get_link(client: aiohttp.ClientSession, url: str, depth: int = DEPTH) -> None:
@@ -41,7 +44,9 @@ async def get_all_htmls(*url):
 
 
 def main(*url):
+    start_time = time()
     asyncio.run(get_all_htmls(*url))
+    print(f'Время выполнения: {round((time() - start_time) / 60, 2)} min')
 
 
 if __name__ == '__main__':

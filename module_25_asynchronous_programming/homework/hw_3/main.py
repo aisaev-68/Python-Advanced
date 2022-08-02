@@ -8,8 +8,8 @@ from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 import validators
 
-# start_url = 'http://www.aclweb.org/anthology/'
-start_url = 'http://evklid.makdu-skillbox.tmweb.ru/'
+start_url = 'http://www.aclweb.org/anthology/'
+# start_url = 'http://evklid.makdu-skillbox.tmweb.ru/'
 OUT_PATH = Path(__file__).parent / 'url'
 OUT_PATH.mkdir(exist_ok=True, parents=True)
 OUT_PATH = OUT_PATH.absolute()
@@ -35,7 +35,7 @@ def parse_for_links(url, text):
             not in urljoin(url, tag['href']) and validators.url(urljoin(url, tag['href']))]
 
 
-async def fetch_async(url, depth=3):
+async def fetch_async(url, depth=1):
     global url_list_recursive
     url_list_recursive = []
     try:
