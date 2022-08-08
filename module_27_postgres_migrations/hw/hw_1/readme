@@ -1,0 +1,6 @@
+# запустить docker-compose up -d, после старта контейнеров
+установить права на каталоги
+
+sudo chgrp docker -R logs && sudo chmod -R 777 logs
+sudo chgrp docker -R postgres_data && sudo chmod -R 777 postgres_data
+

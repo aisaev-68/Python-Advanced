@@ -1,0 +1,128 @@
+{
+	"info": {
+		"_postman_id": "fb25683c-ec8b-412b-ba47-c3219d055610",
+		"name": "Moudul_27_2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20849920"
+	},
+	"item": [
+		{
+			"name": "GetUsers_and_Coffees",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddUser",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Ivanov Petr\",\n    \"has_sale\": true,\n    \"address\": {\n        \"city\": \"Moscow\",\n        \"street_name\": \"1 street\",\n        \"country\": \"USA\",\n        \"zip_code\": \"73725-1513\",\n        \"street_address\": \"567\"\n    },\n    \"coffee_id\": 3\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SearchCoffees",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/coffees?search_title=mug",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"coffees"
+					],
+					"query": [
+						{
+							"key": "search_title",
+							"value": "mug"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GeUserByCountry",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/countryes/?country=United States",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"countryes",
+						""
+					],
+					"query": [
+						{
+							"key": "country",
+							"value": "United States"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetUniqueNotes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/unique_notes/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"unique_notes",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
