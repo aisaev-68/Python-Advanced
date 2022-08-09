@@ -1,0 +1,20 @@
+фиксация версий в папке миграций
+alembic revision --message="Init database" --autogenerate
+
+Upgrade содержит код, который выполняется, когда мы запускаем нашу миграцию,
+тогда как downgrade содержит код, который выполняется, когда мы откатываем миграцию.
+
+будут сгененированы таблицы
+alembic upgrade head
+
+удаление столбца has_sale
+alembic revision --message="Init database after delete has_sale" --autogenerate
+alembic upgrade head
+
+откатываю миграцию с удалением has_sale
+alembic downgrade "нужный идентификатор"
+alembic upgrade 227f3dd49c44
+
+добавляю столбец username
+alembic revision --message="Init database after add username" --autogenerate
+alembic upgrade head

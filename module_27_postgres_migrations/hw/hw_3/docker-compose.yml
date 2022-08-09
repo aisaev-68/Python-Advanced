@@ -1,0 +1,37 @@
+version: "3"
+services:
+  app:
+    build:
+      context: app
+    stop_signal: SIGKILL
+    ports:
+      - 5000:5000
+    links:
+      - postgresql
+    volumes:
+      - ./app/:/app/
+    networks:
+      - net
+
+  postgresql:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: "dbadmin"
+      POSTGRES_PASSWORD: "12345"
+      POSTGRES_DB: "skillbox_db"
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+#    volumes:
+#      - ./logs:/logs
+#      - ./script/:/docker-entrypoint-initdb.d
+#       - ./db/:/var/lib/postgresql/data/pgdata
+    restart: always
+    networks:
+      - net
+
+
+networks:
+  net:
+    driver: bridge
+
