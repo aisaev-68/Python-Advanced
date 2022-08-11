@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Dict
 
 from flask import Flask, redirect, render_template, request, url_for
 from flask_wtf import FlaskForm
