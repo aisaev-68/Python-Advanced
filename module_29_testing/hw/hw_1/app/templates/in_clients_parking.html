@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skillbox Flask testing</title>
+    <link href="../static/css/style.css" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+<h1>Skillbox. Все припаркованные авто</h1>
+<table>
+    <tr>
+        <td>Surname</td>
+        <td>Name</td>
+        <td>Credit_card</td>
+        <td>Car_number</td>
+        <td>Parking Address</td>
+        <td>Time_in</td>
+    </tr>
+
+    {% for parking in parkings %}
+    <tr>
+        <td>{{ parking.client.surname}}</td>
+        <td>{{ parking.client.name}}</td>
+        <td>{{ parking.client.credit_card}}</td>
+        <td>{{ parking.client.car_number}}</td>
+        <td>{{ parking.parking.address }}</td>
+        <td>{{ parking.time_in}}</td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>
