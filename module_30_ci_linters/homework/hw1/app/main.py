@@ -4,7 +4,6 @@ from fastapi import FastAPI
 from sqlalchemy import desc, insert, update
 from sqlalchemy.future import select
 
-
 import models as models
 import schemas as schemas
 from database import engine, session
