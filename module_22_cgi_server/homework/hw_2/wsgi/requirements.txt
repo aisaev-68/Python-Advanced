@@ -1,2 +1,2 @@
 uWSGI==2.0.19.1
-Werkzeug==2.1.2
+Werkzeug==3.0.1
