@@ -3,3 +3,4 @@ marshmallow==3.12.1
 flasgger==0.9.5
 requests==2.25.1
 apispec==4.7.1
+werkzeug>=3.0.1 # not directly required, pinned by Snyk to avoid a vulnerability
