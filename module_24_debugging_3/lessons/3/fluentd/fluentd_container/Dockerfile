@@ -1,4 +1,4 @@
-FROM fluent/fluentd:v1.12.0-debian-1.0
+FROM fluent/fluentd:v1.16-debian
 USER root
 #RUN ["gem", "install", "fluent-plugin-elasticsearch", "--no-document", "--version", "1.9.2"]
 RUN ["gem", "install", "fluent-plugin-elasticsearch", "--no-document", "--version", "1.9.2"]
