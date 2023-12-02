@@ -1,4 +1,4 @@
-FROM python:3.7
+FROM python:3.13.0a1
 
 RUN apt-get update && apt-get install -y python3-dev supervisor nginx \
     && rm -rf /var/lib/apt/lists/*
