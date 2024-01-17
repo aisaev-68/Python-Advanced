@@ -1,4 +1,4 @@
-FROM fluent/fluentd:v1.12.0-debian-1.0
+FROM fluent/fluentd:v1.16-debian-1
 USER root
 
 RUN gem uninstall elasticsearch elasticsearch-transport fluent-plugin-elasticsearch &&  \
