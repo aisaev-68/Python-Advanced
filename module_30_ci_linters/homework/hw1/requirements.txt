@@ -1,6 +1,6 @@
 aiosqlite==0.17.0
 black==22.3.0
-fastapi==0.75.1
+fastapi==0.109.1
 flake8==4.0.1
 greenlet==1.1.2
 isort==5.9.3
