@@ -1,2 +1,2 @@
 Flask-RESTful==0.3.9
-marshmallow==3.12.1
+marshmallow==3.26.2
